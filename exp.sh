@@ -20,6 +20,7 @@ while [ "$i" -lt 99 ]
 do
 	arr=`echo  "$apidata" | jq ".[$i]"`
 	id=`echo  "$arr" | jq ".id"`
+	username=`echo  "$arr" | jq ".username"`
 	name=`echo  "$arr" | jq ".name" | tr -d '"'`
 	email=`echo  "$arr" | jq ".email" | tr -d '"'`
 
@@ -27,9 +28,9 @@ do
 		break
 	fi
 
-	echo "$id,$name,$email"
+	echo "$id,$name,$username,$email"
 	echo "-------------------------"
-	echo "$id,$name,$email" >> $userdatafile
+	echo "$id,$name,$username,$email" >> $userdatafile
 
 	i=`expr $i + 1`
 	usercounter=`expr $usercounter + 1`
@@ -40,7 +41,7 @@ done
 done
 
 
-exit
+ 
 
 
 
