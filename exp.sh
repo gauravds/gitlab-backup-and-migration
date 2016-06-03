@@ -20,7 +20,7 @@ while [ "$i" -lt 99 ]
 do
 	arr=`echo  "$apidata" | jq ".[$i]"`
 	id=`echo  "$arr" | jq ".id"`
-	username=`echo  "$arr" | jq ".username"`
+	username=`echo  "$arr" | jq ".username" | tr -d '"'`
 	name=`echo  "$arr" | jq ".name" | tr -d '"'`
 	email=`echo  "$arr" | jq ".email" | tr -d '"'`
 
