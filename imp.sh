@@ -1,9 +1,25 @@
 #!/bin/bash
 
+projectdatafile="projects_data.csv"
+userdatafile="users_data.csv"
 
-input="data.csv"
-# Set "," as the field separator using $IFS 
-# and read line by line using while read combo 
+#Importing project data 
+
+while IFS=',' read -r id name username email
+do
+	echo "=================================================="
+	
+	apiresponse=$(curl -s POST -F name="$name" -F username="$username" -F email="$email" -F password=konstant http://192.168.0.31/api/v3/users?private_token=TQBGWxNyjx9wamk3iwdx)
+	echo "Created - $name,$username,$email "
+  	echo "=================================================="
+  
+
+done < "$userdatafile"
+
+exit
+
+#Importing project data 
+
 while IFS=',' read -r namespace projectname description
 do
 	echo "=================================================="
@@ -19,4 +35,4 @@ do
   
   	echo "=================================================="
   
-done < "$input"
+done < "$projectdatafile"
